@@ -6,7 +6,7 @@
 
 #include <cmake_template/cmake_template-version.h>
 
-namespace baselib
+namespace testlib
 {
 
 void printInfo()
@@ -14,15 +14,15 @@ void printInfo()
     std::string dataPath = "data";
 
     // Library name
-    std::cout << "Library template::baselib" << std::endl;
+    std::cout << "Library cmake_template::testlib" << std::endl;
     std::cout << "========================================" << std::endl;
 
     // Library version
-    std::cout << "Version: " << CMAKE_TEMPLATE_VERSION << std::endl;
+    std::cout << "Version: " << cmake_template::CMAKE_TEMPLATE_VERSION << std::endl;
     std::cout << std::endl;
 
 // Library type (static or dynamic)
-#ifdef BASELIB_STATIC_DEFINE
+#ifdef TESTLIB_STATIC_DEFINE
     std::cout << "Library type: STATIC" << std::endl;
 #else
     std::cout << "Library type: SHARED" << std::endl;
@@ -52,4 +52,4 @@ void printInfo()
     }
 }
 
-} // namespace baselib
+} // namespace testlib

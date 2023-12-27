@@ -12,7 +12,7 @@
 set(target cmd_example)
 
 # Exit here if required dependencies are not met
-message(STATUS "Example ${target}")
+message(STATUS "Example: ${target}")
 
 #
 # Sources

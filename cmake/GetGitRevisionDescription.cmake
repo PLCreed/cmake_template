@@ -63,7 +63,12 @@ function(get_git_head_revision _refspecvar _hashvar)
         file(READ ${GIT_DIR} submodule)
         string(REGEX REPLACE "gitdir: (.*)\n$" "\\1" GIT_DIR_RELATIVE ${submodule})
         get_filename_component(SUBMODULE_DIR ${GIT_DIR} PATH)
-        get_filename_component(GIT_DIR ${SUBMODULE_DIR}/${GIT_DIR_RELATIVE} ABSOLUTE)
+
+        if(IS_ABSOLUTE ${GIT_DIR_RELATIVE})
+            set(GIT_DIR ${GIT_DIR_RELATIVE})
+        else()
+            get_filename_component(GIT_DIR ${SUBMODULE_DIR}/${GIT_DIR_RELATIVE} ABSOLUTE)
+        endif()
     endif()
 
     set(GIT_DATA "${CMAKE_CURRENT_BINARY_DIR}/CMakeFiles/git-data")
@@ -115,12 +120,12 @@ function(git_describe _var)
 
     # message(STATUS "Arguments to execute_process: ${ARGN}")
     execute_process(COMMAND
-        "${GIT_EXECUTABLE}"
+        ${GIT_EXECUTABLE}
         describe
         ${hash}
         ${ARGN}
         WORKING_DIRECTORY
-        "${CMAKE_CURRENT_SOURCE_DIR}"
+        "${CMAKE_SOURCE_DIR}"
         RESULT_VARIABLE
         res
         OUTPUT_VARIABLE
@@ -137,5 +142,10 @@ endfunction()
 
 function(git_get_exact_tag _var)
     git_describe(out --exact-match ${ARGN})
+    set(${_var} "${out}" PARENT_SCOPE)
+endfunction()
+
+function(git_get_tag _var)
+    git_describe(out --tags ${ARGN})
     set(${_var} "${out}" PARENT_SCOPE)
 endfunction()

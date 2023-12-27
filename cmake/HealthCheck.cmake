@@ -92,7 +92,7 @@ function(add_check_template_target current_template_sha)
         -DPROJECT_SOURCE_DIR=${PROJECT_SOURCE_DIR}
         -DPROJECT_BINARY_DIR=${PROJECT_BINARY_DIR}
         -DAPPLIED_CMAKE_INIT_SHA=${current_template_sha}
-        -P ${PROJECT_SOURCE_DIR}/cmake/CheckTemplate.cmake
+        # -P ${PROJECT_SOURCE_DIR}/cmake/CheckTemplate.cmake
         WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
     )
 

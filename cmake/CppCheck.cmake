@@ -8,9 +8,11 @@ function(perform_cppcheck check_target target)
         ${cppcheck_EXECUTABLE}
         "$<$<BOOL:${includes}>:-I$<JOIN:${includes},\t-I>>"
         --enable=all
+        --language=c++
         --std=c++11
         --verbose
         --suppress=missingIncludeSystem
+        # --suppress=unusedFunction
         ${ARGN}
         WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
     )
