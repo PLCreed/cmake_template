@@ -8,7 +8,8 @@ function(perform_clang_tidy check_target target)
         ${clang_tidy_EXECUTABLE}
         -p\t${PROJECT_BINARY_DIR}
         ${ARGN}
-        -checks=*
+        # -checks=*,-llvm-*,-llvmlibc-*,-altera-*,-android-*,-boost-*
+        --config-file=${PROJECT_SOURCE_DIR}/.clang-tidy
         "$<$<NOT:$<BOOL:${CMAKE_EXPORT_COMPILE_COMMANDS}>>:--\t$<$<BOOL:${includes}>:-I$<JOIN:${includes},\t-I>>>"
         WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
     )

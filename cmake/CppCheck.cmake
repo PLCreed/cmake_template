@@ -12,7 +12,8 @@ function(perform_cppcheck check_target target)
         --std=c++11
         --verbose
         --suppress=missingIncludeSystem
-        # --suppress=unusedFunction
+        --suppress=unusedFunction
+        # --template=vs
         ${ARGN}
         WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
     )

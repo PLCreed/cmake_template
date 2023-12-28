@@ -2,8 +2,8 @@
 include(${CMAKE_CURRENT_LIST_DIR}/CppCheck.cmake)
 include(${CMAKE_CURRENT_LIST_DIR}/ClangTidy.cmake)
 
-set(OPTION_CPPCHECK_ENABLED Off)
-set(OPTION_CLANG_TIDY_ENABLED Off)
+set(OPTION_CPPCHECK_ENABLED OFF)
+set(OPTION_CLANG_TIDY_ENABLED OFF)
 
 # Function to register a target for enabled health checks
 function(perform_health_checks target)
@@ -50,7 +50,7 @@ function(enable_cppcheck status)
     find_package(cppcheck)
 
     if(NOT cppcheck_FOUND)
-        set(OPTION_CPPCHECK_ENABLED Off PARENT_SCOPE)
+        set(OPTION_CPPCHECK_ENABLED OFF PARENT_SCOPE)
         message(STATUS "Check cppcheck skipped: cppcheck not found")
 
         return()
@@ -72,7 +72,7 @@ function(enable_clang_tidy status)
     find_package(clang_tidy)
 
     if(NOT clang_tidy_FOUND)
-        set(OPTION_CLANG_TIDY_ENABLED Off PARENT_SCOPE)
+        set(OPTION_CLANG_TIDY_ENABLED OFF PARENT_SCOPE)
         message(STATUS "Check clang-tidy skipped: clang-tidy not found")
 
         return()
@@ -81,7 +81,7 @@ function(enable_clang_tidy status)
     set(OPTION_CLANG_TIDY_ENABLED ${status} PARENT_SCOPE)
     message(STATUS "Check clang-tidy")
 
-    set(CMAKE_EXPORT_COMPILE_COMMANDS On PARENT_SCOPE)
+    set(CMAKE_EXPORT_COMPILE_COMMANDS ON PARENT_SCOPE)
 endfunction()
 
 # Configure cmake target to check for cmake-init template

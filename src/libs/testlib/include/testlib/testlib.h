@@ -1,8 +1,6 @@
 
 #pragma once
 
-#include <string>
-
 #include <testlib/testlib_api.h>
 
 namespace testlib
